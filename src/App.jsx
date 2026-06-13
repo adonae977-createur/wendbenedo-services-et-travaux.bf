@@ -809,7 +809,7 @@ export default function App() {
                     </div>
                     <div>
                       <h4 className="font-bold text-stone-900 text-sm">Notre Siège</h4>
-                      <p className="text-stone-600 text-xs sm:text-sm mt-1">Secteur 2, Face au Marché, Bogandé, Burkina Faso</p>
+                      <p className="text-stone-600 text-xs sm:text-sm mt-1">Secteur 2, Face au Marché, Bogandé, Burkina Faso/Boulsa-Face au mur de la mairie/Ouagadougou Tingandogo</p>
                     </div>
                   </div>
 
@@ -819,7 +819,7 @@ export default function App() {
                     </div>
                     <div>
                       <h4 className="font-bold text-stone-900 text-sm">Secrétariat &amp; WhatsApp</h4>
-                      <p className="text-stone-600 text-xs sm:text-sm mt-1">+226 24 77 9X XX / +226 70 XX XX XX</p>
+                      <p className="text-stone-600 text-xs sm:text-sm mt-1">+226 78 48 15 06 / +226 72 56 36 22</p>
                     </div>
                   </div>
 
