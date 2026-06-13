@@ -562,21 +562,21 @@ export default function App() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-20">
               {[
                 {
-                  name: "M. Yempabou Lankoandé",
+                  name: "M. SAWADOGO MARCEL",
                   role: "Fondateur & Maître Ébéniste",
                   bio: "Plus de 30 ans d'expérience. Compagnon ébéniste d'exception et garant de l'esprit Wend Benedo depuis 2004.",
                   image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80",
                   specialty: "Séchage & Sélection des Bois"
                 },
                 {
-                  name: "M. Harouna Thiombiano",
+                  name: "M. SAWADOGO DONATIEN",
                   role: "Directeur de l'Atelier",
                   bio: "Spécialiste de la lecture de plans complexes et de la découpe industrielle assistée par ordinateur.",
                   image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=80",
                   specialty: "Agencement Bâtiment & Machines"
                 },
                 {
-                  name: "Mme Mariam Lompo",
+                  name: "Mme SAWADOGO DIANE/Lompo",
                   role: "Responsable Administrative & Formations",
                   bio: "Pilote avec rigueur les candidatures des apprentis aux examens d'État CQP / BQP et la relation client.",
                   image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=500&q=80",
@@ -627,9 +627,9 @@ export default function App() {
               </div>
               <div className="relative max-w-3xl z-10">
                 <span className="text-xxs font-extrabold uppercase tracking-widest text-amber-400 block mb-3">La Force Collective de nos Compagnons</span>
-                <h3 className="text-2xl sm:text-3xl font-bold font-serif mb-4 text-white">Une synergie unique au cœur de Bogandé</h3>
+                <h3 className="text-2xl sm:text-3xl font-bold font-serif mb-4 text-white">Une synergie unique au coeur de Bogandé</h3>
                 <p className="text-xs sm:text-sm leading-relaxed text-stone-300 mb-6 font-light">
-                  Au-delà de nos cadres permanents, <strong>Wend Benedo Service et Travaux</strong> c'est un collectif de plus de 15 charpentiers-compagnons mobiles et 10 apprentis hautement impliqués sur vos chantiers. Chaque projet que vous nous confiez fait grandir un jeune du Burkina Faso en cours de professionnalisation d'État.
+                  Au-delà de nos cadres permanents, <strong>Wend Benedo Services et Travaux</strong> c'est un collectif de plus de 15 charpentiers-compagnons mobiles et 10 apprentis hautement impliqués sur vos chantiers. Chaque projet que vous nous confiez fait grandir un jeune du Burkina Faso en cours de professionnalisation d'État.
                 </p>
                 <button 
                   onClick={() => navigateTo('academy')}
@@ -959,16 +959,16 @@ export default function App() {
               <h4 className="font-bold text-xxs uppercase tracking-widest text-amber-500 mb-4">Renseignements Généraux</h4>
               <ul className="space-y-2 text-xs sm:text-sm">
                 <li>Enregistrement : Création 2004 / RCCM 2017</li>
-                <li>Région d'intervention : Sirba / Gnagna / Centre (Ouagadougou)</li>
+                <li>Région d'intervention : Sirba / Gnagna / Boulsa (kuilsé)/Centre (Ouagadougou)</li>
                 <li>Hébergement : Compatible PWA Standard</li>
-                <li>Spécialité : Menuiserie, Mobilier, Agencement &amp; Commerce</li>
+                <li>Spécialité : Menuiserie, Mobilier, Agencement,formation professionnelle &amp; Commerce</li>
               </ul>
             </div>
 
           </div>
 
           <div className="pt-8 text-center text-xxs text-stone-500 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p>© {new Date().getFullYear()} Wend Benedo Service et Travaux. Tous droits réservés.</p>
+            <p>© {new Date().getFullYear()} Wend Benedo Services et Travaux. Tous droits réservés par le commandant zabra.</p>
             <div className="flex gap-4">
               <span className="hover:text-stone-400 cursor-pointer">Réglementation Bois local</span>
               <span>•</span>
