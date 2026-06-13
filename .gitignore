@@ -1,0 +1,29 @@
+Dossier de dépendances (très lourd, géré par npm)
+
+node_modules/
+
+Dossier de production compilé (généré automatiquement par npm run build)
+
+dist/
+dist-ssr/
+*.local
+
+Fichiers journaux d'erreurs
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+Fichiers de configuration et environnement (sensible)
+
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+Fichiers système d'exploitation (Mac et Windows)
+
+.DS_Store
+Thumbs.db

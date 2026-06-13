@@ -1,0 +1,15 @@
+STREAMING_CHUNK: Autoriser l'exploration des pages pour tous les robots...
+
+Guide d'accueil des moteurs de recherche (Google, Bing, Yahoo)
+
+User-agent: *
+Allow: /
+
+Empêcher l'indexation de fichiers système temporaires si besoin
+
+Disallow: /_themes/
+Disallow: /private/
+
+Emplacement officiel de la carte routière du site pour Google
+
+Sitemap: https://www.wendbenedo-bois.bf/sitemap.xml

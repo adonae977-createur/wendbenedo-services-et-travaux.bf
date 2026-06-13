@@ -1,0 +1,42 @@
+/* STREAMING_CHUNK:Importing Tailwind CSS directives... */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* STREAMING_CHUNK:Defining global root variables and colors... */
+:root {
+  --brand-primary: #0F0E0C;   /* Ébène profond */
+  --brand-secondary: #B45309; /* Terracotta d'Afrique */
+  --brand-accent: #D4AF37;    /* Or précieux */
+  --brand-background: #FDFBF7; /* Lin sauvage */
+}
+
+/* STREAMING_CHUNK:Styling body and base elements... */
+body {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--brand-background);
+  color: #1C1A17;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* STREAMING_CHUNK:Designing custom smooth scrollbars... */
+/* Conception d'une barre de défilement sur-mesure ultra-fine et discrète */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+background: #FDFBF7;
+}
+
+::-webkit-scrollbar-thumb {
+background: #D4AF37;
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: #B45309;
+}
