@@ -846,7 +846,7 @@ export default function App() {
                     </div>
                     <div>
                       <h4 className="font-bold text-stone-900 text-sm">Adresse Courriel</h4>
-                      <p className="text-stone-600 text-xs sm:text-sm mt-1">direction@wendbenedo-bois.bf</p>
+                      <p className="text-stone-600 text-xs sm:text-sm mt-1">adonae977@gmail.com</p>
                     </div>
                   </div>
                 </div>
