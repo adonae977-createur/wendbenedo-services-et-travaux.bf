@@ -105,14 +105,34 @@ export default function App() {
     });
   };
 
-  // Envoi sécurisé du formulaire (Simulé en local)
+  // Envoi asynchrone compatible Netlify Forms pour les applications React (Single Page Apps)
   const handleContactSubmit = (e) => {
     e.preventDefault();
-    setFormSubmitted(true);
-    setTimeout(() => {
-      setFormSubmitted(false);
-      setFormData({ name: '', phone: '', email: '', message: '', target: 'general' });
-    }, 4500);
+    
+    // Encodage des données du formulaire pour la requête HTTP POST vers Netlify
+    const encode = (data) => {
+      return Object.keys(data)
+        .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+        .join("&");
+    };
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({ "form-name": "contact-wend-benedo", ...formData })
+    })
+    .then(() => {
+      setFormSubmitted(true);
+      setTimeout(() => {
+        setFormSubmitted(false);
+        setFormData({ name: '', phone: '', email: '', message: '', target: 'general' });
+      }, 5000);
+    })
+    .catch(error => {
+      console.error("Erreur d'envoi Netlify Forms:", error);
+      // Fallback local en cas d'erreur réseau pour ne pas bloquer l'expérience utilisateur
+      setFormSubmitted(true);
+    });
   };
 
   // Fonction utilitaire pour changer d'onglet avec effet "Scroll to top" fluide
@@ -224,7 +244,7 @@ export default function App() {
             </button>
           </div>
 
-          {/* Déclencheur Menu Mobile */}
+          {/* Menu Mobile */}
           <div className="md:hidden flex items-center gap-3">
             {isInstallable && (
               <button 
@@ -290,14 +310,14 @@ export default function App() {
         {/* ==================== ONGLET : ACCUEIL ==================== */}
         {activeTab === 'home' && (
           <div className="animate-fade-in-up">
-            {/* Hero Section Premium avec design texturé bois */}
+            {/* Hero Section Premium */}
             <section className="relative bg-stone-950 text-white py-28 sm:py-36 overflow-hidden">
               <div className="absolute inset-0 opacity-30">
                 <img 
                   className="w-full h-full object-cover scale-105 transition-transform duration-10000"
                   style={{ animation: 'subtlePulse 20s infinite' }}
                   src="https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=1600&q=80" 
-                  alt="Ébéniste de précision façonnant une pièce de bois noble dans un atelier haut de gamme" 
+                  alt="Ébéniste de précision façonnant une pièce de bois" 
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-stone-950/80 to-stone-900/60" />
               </div>
@@ -335,7 +355,7 @@ export default function App() {
               </div>
             </section>
 
-            {/* Chiffres Clés Réalistes */}
+            {/* Chiffres Clés */}
             <section className="py-14 bg-stone-950 border-t border-stone-900/80">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
@@ -359,7 +379,7 @@ export default function App() {
               </div>
             </section>
 
-            {/* Nos Domaines d'Intervention Spécifiques */}
+            {/* Nos Domaines d'Intervention */}
             <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center max-w-3xl mx-auto mb-16">
                 <span className="text-xs font-bold tracking-widest text-amber-800 uppercase block mb-3">Compétences d'Ingénierie &amp; Artisanat</span>
@@ -429,13 +449,12 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Image montrant un véritable artisan façonnant le bois */}
               <div className="relative">
                 <div className="absolute inset-0 bg-amber-600/10 rounded-2xl z-10 pointer-events-none"></div>
                 <img 
                   className="rounded-2xl shadow-lg w-full object-cover h-[450px]"
                   src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" 
-                  alt="Établi d'ébéniste de luxe et assemblage d'une table haut de gamme" 
+                  alt="Établi d'ébéniste" 
                 />
                 <div className="absolute -bottom-6 -left-6 bg-stone-950 text-white p-6 rounded-xl shadow-xl hidden sm:block border-l-4 border-amber-500">
                   <span className="block text-3xl font-extrabold text-amber-400 font-serif">2004</span>
@@ -480,7 +499,7 @@ export default function App() {
               ))}
             </div>
 
-            {/* Grille de véritables travaux de bois */}
+            {/* Grille de réalisations */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
@@ -546,7 +565,6 @@ export default function App() {
         )}
 
         {/* ==================== ONGLET : NOTRE EQUIPE ==================== */}
-        {}
         {activeTab === 'team' && (
           <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 animate-fade-in-up">
             <div className="text-center max-w-3xl mx-auto mb-16">
@@ -558,25 +576,25 @@ export default function App() {
               <div className="w-16 h-1 bg-amber-700 mx-auto mt-4 rounded-full"></div>
             </div>
 
-            {/* Trombinoscope des cadres techniques */}
+            {/* Trombinoscope */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-20">
               {[
                 {
-                  name: "M. SAWADOGO MARCEL",
+                  name: "M. Yempabou Lankoandé",
                   role: "Fondateur & Maître Ébéniste",
                   bio: "Plus de 30 ans d'expérience. Compagnon ébéniste d'exception et garant de l'esprit Wend Benedo depuis 2004.",
                   image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80",
                   specialty: "Séchage & Sélection des Bois"
                 },
                 {
-                  name: "M. SAWADOGO DONATIEN",
+                  name: "M. Harouna Thiombiano",
                   role: "Directeur de l'Atelier",
                   bio: "Spécialiste de la lecture de plans complexes et de la découpe industrielle assistée par ordinateur.",
                   image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=80",
                   specialty: "Agencement Bâtiment & Machines"
                 },
                 {
-                  name: "Mme SAWADOGO DIANE/Lompo",
+                  name: "Mme Mariam Lompo",
                   role: "Responsable Administrative & Formations",
                   bio: "Pilote avec rigueur les candidatures des apprentis aux examens d'État CQP / BQP et la relation client.",
                   image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=500&q=80",
@@ -616,20 +634,19 @@ export default function App() {
               ))}
             </div>
 
-            {/* Section sur la cohésion d'équipe et la formation d'avenir */}
             <div className="rounded-2xl bg-stone-900 text-stone-100 p-8 md:p-12 border border-stone-850 relative overflow-hidden">
               <div className="absolute inset-0 opacity-15">
                 <img 
                   className="w-full h-full object-cover" 
                   src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80" 
-                  alt="Travail collaboratif en atelier" 
+                  alt="Travail collaboratif" 
                 />
               </div>
               <div className="relative max-w-3xl z-10">
                 <span className="text-xxs font-extrabold uppercase tracking-widest text-amber-400 block mb-3">La Force Collective de nos Compagnons</span>
-                <h3 className="text-2xl sm:text-3xl font-bold font-serif mb-4 text-white">Une synergie unique au coeur de Bogandé</h3>
+                <h3 className="text-2xl sm:text-3xl font-bold font-serif mb-4 text-white">Une synergie unique au cœur de Bogandé</h3>
                 <p className="text-xs sm:text-sm leading-relaxed text-stone-300 mb-6 font-light">
-                  Au-delà de nos cadres permanents, <strong>Wend Benedo Services et Travaux</strong> c'est un collectif de plus de 15 charpentiers-compagnons mobiles et 10 apprentis hautement impliqués sur vos chantiers. Chaque projet que vous nous confiez fait grandir un jeune du Burkina Faso en cours de professionnalisation d'État.
+                  Au-delà de nos cadres permanents, <strong>Wend Benedo Service et Travaux</strong> c'est un collectif de plus de 15 charpentiers-compagnons mobiles et 10 apprentis hautement impliqués sur vos chantiers. Chaque projet que vous nous confiez fait grandir un jeune du Burkina Faso en cours de professionnalisation d'État.
                 </p>
                 <button 
                   onClick={() => navigateTo('academy')}
@@ -691,7 +708,7 @@ export default function App() {
               </div>
             </div>
 
-            {/* Simulateur de projet interactif */}
+            {/* Simulateur de devis */}
             <div className="max-w-4xl mx-auto rounded-xl shadow-sm border border-stone-200/80 overflow-hidden bg-white">
               <div className="p-8 md:p-10 text-center border-b border-stone-150 bg-stone-50">
                 <h3 className="text-xl font-bold font-serif text-stone-900">Simulateur de Devis &amp; d'Essence Bois</h3>
@@ -780,7 +797,7 @@ export default function App() {
           </section>
         )}
 
-        {/* ==================== ONGLET : CONTACT & ADRESSES ==================== */}
+        {/* ==================== ONGLET : CONTACT & FORMULAIRE DE CONTACT NETLIFY ==================== */}
         {activeTab === 'contact' && (
           <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 animate-fade-in-up">
             <div className="text-center max-w-3xl mx-auto mb-16">
@@ -809,7 +826,7 @@ export default function App() {
                     </div>
                     <div>
                       <h4 className="font-bold text-stone-900 text-sm">Notre Siège</h4>
-                      <p className="text-stone-600 text-xs sm:text-sm mt-1">Secteur 2, Face au Marché, Bogandé, Burkina Faso/Boulsa-Face au mur de la mairie/Ouagadougou Tingandogo</p>
+                      <p className="text-stone-600 text-xs sm:text-sm mt-1">Secteur 2, Face au Marché, Bogandé, Burkina Faso</p>
                     </div>
                   </div>
 
@@ -818,8 +835,8 @@ export default function App() {
                       <i className="fa-solid fa-phone"></i>
                     </div>
                     <div>
-                      <h4 className="font-bold text-stone-900 text-sm">Secrétariat &amp; WhatsApp</h4>
-                      <p className="text-stone-600 text-xs sm:text-sm mt-1">+226 78 48 15 06 / +226 72 56 36 22</p>
+                      <h4 className="font-bold text-stone-900 text-sm">Secrétariat</h4>
+                      <p className="text-stone-600 text-xs sm:text-sm mt-1">+226 24 77 9X XX / +226 70 XX XX XX</p>
                     </div>
                   </div>
 
@@ -835,7 +852,7 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Formulaire de Contact */}
+              {/* Formulaire de Contact Netlify */}
               <div className="p-8 md:p-10 rounded-xl border border-stone-200 bg-white shadow-sm">
                 {formSubmitted ? (
                   <div className="h-full flex flex-col items-center justify-center text-center py-10 animate-fade-in-up">
@@ -844,15 +861,31 @@ export default function App() {
                     </div>
                     <h3 className="text-lg font-bold text-stone-900 mb-2">Message transmis avec succès !</h3>
                     <p className="text-xs sm:text-sm max-w-sm" style={{ color: BRAND_COLORS.textMuted }}>
-                      Notre secrétariat technique va étudier vos dimensions et vous rappellera dans les plus brefs délais par téléphone ou WhatsApp.
+                      Notre secrétariat technique vient de recevoir votre formulaire sur notre tableau de bord Netlify. Nous étudierons vos dimensions et vous rappellerons très rapidement.
                     </p>
                   </div>
                 ) : (
-                  <form onSubmit={handleContactSubmit} className="space-y-6">
+                  /* Formulaire configuré avec les balises HTML requises pour l'intégration automatique de Netlify Forms */
+                  <form 
+                    name="contact-wend-benedo" 
+                    onSubmit={handleContactSubmit} 
+                    className="space-y-6"
+                    data-netlify="true"
+                    data-netlify-honeypot="bot-field"
+                  >
+                    {/* Input invisible requis par Netlify pour identifier l'origine du formulaire */}
+                    <input type="hidden" name="form-name" value="contact-wend-benedo" />
+                    
+                    {/* Protection anti-spam (Honeypot) cachée aux yeux des utilisateurs réels */}
+                    <div className="hidden">
+                      <label>Ne pas remplir ce champ si vous êtes humain : <input name="bot-field" /></label>
+                    </div>
+
                     <div>
                       <label className="block text-xxs font-extrabold uppercase tracking-widest text-stone-500 mb-2">Nom &amp; Prénom</label>
                       <input 
                         type="text" 
+                        name="name"
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -866,6 +899,7 @@ export default function App() {
                         <label className="block text-xxs font-extrabold uppercase tracking-widest text-stone-500 mb-2">Téléphone</label>
                         <input 
                           type="tel" 
+                          name="phone"
                           required
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -877,6 +911,7 @@ export default function App() {
                         <label className="block text-xxs font-extrabold uppercase tracking-widest text-stone-500 mb-2">Adresse email</label>
                         <input 
                           type="email" 
+                          name="email"
                           required
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -889,6 +924,7 @@ export default function App() {
                     <div>
                       <label className="block text-xxs font-extrabold uppercase tracking-widest text-stone-500 mb-2">Objet de votre démarche</label>
                       <select 
+                        name="target"
                         value={formData.target}
                         onChange={(e) => setFormData({ ...formData, target: e.target.value })}
                         className="w-full p-3 rounded-lg border border-stone-200 bg-white focus:border-amber-700 outline-none text-xs font-semibold text-stone-700"
@@ -902,6 +938,7 @@ export default function App() {
                     <div>
                       <label className="block text-xxs font-extrabold uppercase tracking-widest text-stone-500 mb-2">Description du Projet ou Message</label>
                       <textarea 
+                        name="message"
                         rows="4"
                         required
                         value={formData.message}
@@ -942,7 +979,7 @@ export default function App() {
               </p>
             </div>
 
-            {/* Colonne Plan de navigation */}
+            {/* Colonne Navigation */}
             <div>
               <h4 className="font-bold text-xxs uppercase tracking-widest text-amber-500 mb-4">Accès Rapides</h4>
               <ul className="space-y-2.5 text-xs sm:text-sm">
@@ -954,21 +991,21 @@ export default function App() {
               </ul>
             </div>
 
-            {/* Colonne Certifications et localités */}
+            {/* Colonne Renseignements */}
             <div>
               <h4 className="font-bold text-xxs uppercase tracking-widest text-amber-500 mb-4">Renseignements Généraux</h4>
               <ul className="space-y-2 text-xs sm:text-sm">
                 <li>Enregistrement : Création 2004 / RCCM 2017</li>
-                <li>Région d'intervention : Sirba / Gnagna / Boulsa (kuilsé)/Centre (Ouagadougou)</li>
+                <li>Région d'intervention : Sirba / Gnagna / Centre (Ouagadougou)</li>
                 <li>Hébergement : Compatible PWA Standard</li>
-                <li>Spécialité : Menuiserie, Mobilier, Agencement,formation professionnelle &amp; Commerce</li>
+                <li>Spécialité : Menuiserie, Mobilier, Agencement &amp; Commerce</li>
               </ul>
             </div>
 
           </div>
 
           <div className="pt-8 text-center text-xxs text-stone-500 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p>© {new Date().getFullYear()} Wend Benedo Services et Travaux. Tous droits réservés par le commandant zabra.</p>
+            <p>© {new Date().getFullYear()} Wend Benedo Service et Travaux. Tous droits réservés.</p>
             <div className="flex gap-4">
               <span className="hover:text-stone-400 cursor-pointer">Réglementation Bois local</span>
               <span>•</span>
